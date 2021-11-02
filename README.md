@@ -1,2 +1,3 @@
 # results-browser
-Single page app for browsing sailing results
+
+> Single page app for browsing sailing results

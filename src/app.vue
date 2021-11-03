@@ -8,21 +8,19 @@
 // import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue';
 
-import { getCurrentFolderUrl, getPage, state as browserState } from './browser';
+import { getCurrentFolderUrl, fetchResource } from './resource/index';
 
 export default {
   setup() {
-    const state = ref({
-      browser: browserState,
-    });
+    const state = ref({});
 
     const currentUrl = getCurrentFolderUrl();
 
     const file = ref('');
 
-    getPage(currentUrl).then((body) => {
-      console.log('Loaded body', body);
-      file.value = body;
+    fetchResource(currentUrl).then((resource) => {
+      console.log('Loaded resource', resource);
+      // file.value = body;
     });
 
     return {

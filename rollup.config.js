@@ -1,10 +1,12 @@
 // rollup.config.js
 
-import vue from 'rollup-plugin-vue';
-import pkg from './package.json';
-import { terser } from 'rollup-plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import css from 'rollup-plugin-import-css';
+import { terser } from 'rollup-plugin-terser';
+import vue from 'rollup-plugin-vue';
+
+import pkg from './package.json';
 
 export default [
   // ESM build to be used with webpack/rollup.
@@ -35,11 +37,18 @@ export default [
     output: {
       format: 'iife',
       file: `dist/${pkg.name}.min.js`,
+      sourcemap: true,
     },
     plugins: [
       nodeResolve(),
-      vue({ template: { isProduction: true } }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      vue({ css: false, template: { isProduction: true } }),
+      replace({
+        preventAssignment: true,
+        values: {
+          'process.env.NODE_ENV': JSON.stringify('production'),
+        },
+      }),
+      css(),
       terser(),
     ],
   },

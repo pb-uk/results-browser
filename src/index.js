@@ -1,4 +1,6 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+// src/index.js
 
-Vue.use(VueRouter);
+import app from './app.vue';
+// import './styles.css';
+
+export default app;

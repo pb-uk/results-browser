@@ -2,7 +2,7 @@
 // import { createApp } from 'vue/dist/vue.runtime.esm-bundler.js';
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
-import app from './app.vue';
+import app from './index';
 
 createApp(app)
   .use(

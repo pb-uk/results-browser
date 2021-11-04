@@ -1,9 +1,10 @@
 // rollup.config.js
 
+import css from 'rollup-plugin-import-css';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import css from 'rollup-plugin-import-css';
 import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 import vue from 'rollup-plugin-vue';
 
 import pkg from './package.json';
@@ -40,8 +41,9 @@ export default [
       sourcemap: true,
     },
     plugins: [
-      nodeResolve(),
+      typescript(),
       vue({ css: false, template: { isProduction: true } }),
+      nodeResolve(),
       replace({
         preventAssignment: true,
         values: {

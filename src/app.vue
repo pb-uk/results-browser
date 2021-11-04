@@ -4,7 +4,7 @@
   <pre>{{ file }}</pre>
 </template>
 
-<script>
+<script lang="ts">
 // import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue';
 
@@ -20,6 +20,16 @@ export default {
 
     fetchResource(currentUrl).then((resource) => {
       console.log('Loaded resource', resource);
+      // file.value = body;
+    });
+
+    fetchResource(currentUrl + 'local.html').then((resource) => {
+      console.log('Loaded html', resource);
+      // file.value = body;
+    });
+
+    fetchResource(currentUrl + 'locals.html').then((resource) => {
+      console.log('Loaded error', resource);
       // file.value = body;
     });
 

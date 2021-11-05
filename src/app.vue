@@ -8,27 +8,27 @@
 // import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue';
 
-import { getCurrentFolderUrl, fetchResource } from './resource/index';
+import { getIndexUrl, fetchResource } from './resource/index';
 
 export default {
   setup() {
     const state = ref({});
 
-    const currentUrl = getCurrentFolderUrl();
+    const currentIndexUrl = getIndexUrl(window.location.href);
 
     const file = ref('');
 
-    fetchResource(currentUrl).then((resource) => {
+    fetchResource(window.location.href).then((resource) => {
       console.log('Loaded resource', resource);
       // file.value = body;
     });
 
-    fetchResource(currentUrl + 'local.html').then((resource) => {
+    fetchResource(currentIndexUrl + 'local.html').then((resource) => {
       console.log('Loaded html', resource);
       // file.value = body;
     });
 
-    fetchResource(currentUrl + 'locals.html').then((resource) => {
+    fetchResource(currentIndexUrl + 'locals.html').then((resource) => {
       console.log('Loaded error', resource);
       // file.value = body;
     });
@@ -36,7 +36,7 @@ export default {
     return {
       state,
       file,
-      currentUrl,
+      currentIndexUrl,
     };
   },
 };

@@ -25,12 +25,12 @@ export const parseResponse = async (
   return await Resource.create(response);
 };
 
-export const getCurrentFolderUrl = () => {
-  const path = window.location.href.replace(location.hash, '');
+export const getIndexUrl = (url: string): string => {
+  const path = url.replace(location.hash, '');
   return path.substring(0, path.lastIndexOf('/') + 1);
 };
 
 export const fetchResource = async (url: string): Promise<Resource> => {
   const response = new ResourceResponse(await fetch(url));
-  return await parseResponse(response);
+  return parseResponse(response);
 };
